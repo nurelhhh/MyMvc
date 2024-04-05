@@ -1,0 +1,33 @@
+﻿@using MyMvc.Data
+@{
+    ViewData["Title"] = "Student Page";
+    var studentList = StudentData.GetAllData();
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Student Index</h1>
+
+    <table class="text-start table">
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Student ID</th>
+            <th>Action</th>
+        </tr>
+        @{
+            for (int i = 0; i < studentList.Count; i++)
+            {
+                <tr>
+                    <td>@(i+1)</td>
+                    <td>@studentList[i].Name</td>
+                    <td>@studentList[i].StudentId</td>
+                    <td>
+                        <a asp-area="" asp-controller="Student" asp-action="Details" asp-route-id=@studentList[i].StudentId>Details</a>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+</div>
